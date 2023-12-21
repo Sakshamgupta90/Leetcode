@@ -4,6 +4,8 @@ class Solution {
         
         for(String s: strs){
             char[] charArray = s.toCharArray();
+            Arrays.sort(charArray);
+
             String sorted = new String(charArray);
               if(!hash.containsKey(sorted)){
             hash.put(sorted, new ArrayList<>());
