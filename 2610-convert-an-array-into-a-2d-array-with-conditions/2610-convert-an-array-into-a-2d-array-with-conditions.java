@@ -1,9 +1,36 @@
 class Solution {
-    public List<List<Integer>> findMatrix(int[] nums) {
+     public List<List<Integer>> findMatrix(int[] nums) {
+         /** We will keep on adding the numbers according to the frequency 
+         Iterate through each element (c) in the input array.
+        Check if the frequency of the current element is greater than or
+         equal to the size of the result list (ans). If true, add a new 
+         ArrayList to the result list.
+
+        Store the integer in the list corresponding to its current frequency
+         (freq[c]). Increment the frequency. while Adding elements according to 
+         their frequncies, we are ensured that all distincts elements are 
+         being kept in a row.*/
+         int[] freq = new int[nums.length + 1];
+         List<List<Integer>> ans = new ArrayList<>();
+         for(int ele: nums){
+
+            if(freq[ele] >= ans.size())
+                ans.add(new ArrayList<>());
+            
+            ans.get(freq[ele]).add(ele);
+            freq[ele]++;
+         }
+         return ans;
+         //TC: O(N) SC: O(1)
+     }
+
+    /************************************************************************/
+
+    public List<List<Integer>> findMatrix_usingHashMap(int[] nums) {
         /**Using HashMap:
         First we create a concurrent hashmap, and keep track of the freq. of
          each element of our array. After this, we will iterate till our map 
-         is not null, and will iterate to each and every element present in map
+         is not null, and will iterate to each and every element present in map.
          We keep on decrementing the value and whenever the element will 0
          we remove it from our hashmap. 
          While iterating, we are removing the elements from the map, so it 
@@ -29,5 +56,6 @@ class Solution {
         }
 
         return ans;
+        //TC: O(N) SC: O(N)
     }
 }
